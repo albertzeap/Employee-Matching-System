@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Domain/ProfileManager/ProfileManagerHandler.hpp"
+#include <string>
 
 namespace Domain::ProfileManager
 {
@@ -13,6 +14,16 @@ namespace Domain::ProfileManager
       // Operations
 
      ~Profile() noexcept override;
+
+     private:
+      std::string firstName;
+      std::string lastName;
+      std::string jobField;
+
+      // Resume and Reference class still needs to be implemented 
+      // Resume resume;
+      // References references;
+      
   }; // class Profile
 
 

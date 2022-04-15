@@ -9,9 +9,12 @@ namespace TechnicalServices::Support
     {
         public:
             //Operations
-            virtual void requestSupportTicket()        = 0;
-            virtual std::string resolveSupportTicket() = 0;
+            virtual void requestSupportTicket(                             ) = 0;
+            virtual bool deleteSupportTicket (SupportTicket * supportTicket) = 0;
 
+            virtual SupportTicket createSupportTicket(std::string ticketID, std::string issue, bool resolved) = 0;
+            virtual std::string resolveSupportTicket (                                                      ) = 0;
+            
             //Destructor
             virtual ~SupportHandler() noexcept = 0;
         

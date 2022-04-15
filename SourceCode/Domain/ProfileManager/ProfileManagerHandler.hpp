@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdio.h>
+
 namespace Domain::ProfileManager
 {
     // Profile Manager Package within the Domain Layer Abstract class
@@ -8,7 +10,17 @@ namespace Domain::ProfileManager
         public:
             //Operations
             virtual void manageResume() = 0;
-            virtual bool uploadResume() = 0;
+            virtual bool uploadResume(FILE filename) = 0;
+            virtual bool deleteResume(FILE filename) = 0;
+            virtual bool deleteProfile(Profile * profile) = 0;
+
+            // TO DO
+                // createProfile
+                // applyForJob
+                // getReferences
+                // requestResume
+                // requestResumeFeedback
+                // uploadResumeFeedback
 
             //Destructor
             virtual ~ProfileManagerHandler() noexcept = 0;

@@ -13,6 +13,11 @@ namespace TechnicalServices::Support
       // Operations
 
      ~SupportTicket() noexcept override;
+
+    private:
+      std::string ticketID;
+      std::string issue;
+      bool resolved;
   }; 
 
 
