@@ -12,10 +12,11 @@ namespace Domain::ProfileManager
       using ProfileManagerHandler::ProfileManagerHandler;  // inherit constructors
 
       // Operations
+      
 
      ~Profile() noexcept override;
 
-     private:
+     protected:
       std::string firstName;
       std::string lastName;
       std::string jobField;

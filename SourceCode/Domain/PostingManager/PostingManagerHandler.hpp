@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Domain/PostingManager/JobPosting.hpp"
+
 #include <string>
 #include <vector>
 
@@ -11,11 +13,11 @@ namespace Domain::PostingManager
         public:
             //Operations
             //To Do: Create Job class
-            virtual Job createJobPost(std::string jobTitle, int salary,           std::string jobExperience,
+            virtual JobPosting createJobPost(std::string jobTitle, int salary,           std::string jobExperience,
                                       std::string jobType , std::string deadline, std::string location     ,
                                       int jobID                                                            ) = 0;
-            virtual bool deleteJobPost(Job * job) = 0;
-            virtual std::vector<Job> filterJob(std::string filter) = 0; 
+            virtual bool deleteJobPost(JobPosting * job) = 0;
+            virtual std::vector<JobPosting> filterJob(std::string filter) = 0; 
               
 
             //Destructor
