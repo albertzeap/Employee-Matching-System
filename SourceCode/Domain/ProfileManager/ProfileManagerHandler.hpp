@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Domain/ProfileManager/Profile.hpp"
+
 #include <stdio.h>
 
 namespace Domain::ProfileManager
