@@ -11,7 +11,7 @@ namespace Domain::ProfileManager
     class ProfileManagerHandler
     {
         public:
-
+           
             // JOB OPERATIONS
 
             // User applies to a job by adding their profile object. 
@@ -48,6 +48,9 @@ namespace Domain::ProfileManager
             virtual Reference addReference   (std::string name) = 0; 
             // User is able to delete a reference from their profile by passing in a reference object. Should be for jobseeker only. 
             virtual bool deleteReference(Reference * reference) = 0; 
+
+            // Factory pattern function within class 
+	        static ProfileManagerHandler * makeProfileManager(std::string kind);
             
             
             //Destructor
