@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Domain/ProfileManager/Profile.hpp"
+#include "Domain/ProfileManager/Reference.hpp"
 
 #include <stdio.h>
 
