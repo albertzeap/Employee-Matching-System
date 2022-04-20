@@ -20,7 +20,7 @@ namespace Domain::PostingManager
             JobPosting & operator=( const JobPosting & rhs ) = default; // copy assignment
             JobPosting & operator=( const JobPosting && rhs) = default; // move assignment
 
-            //TODO: 
+            //TODO: create class attributes 
 
 
         
