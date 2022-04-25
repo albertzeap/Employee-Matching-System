@@ -7,6 +7,8 @@
 #include <memory>      // unique_ptr, make_unique<>()
 #include <string>      // string, getline()
 #include <vector>
+#include <cstdlib>    // srand(), time()
+
 
 #include "Domain/Library/Books.hpp"    // Include for now - will replace next increment
 #include "Domain/Session/SessionHandler.hpp"
@@ -48,7 +50,7 @@ namespace UI
 
 
     // 2) Present login screen to user and get username, password, and valid role
-    Domain::Session::UserCredentials credentials  = {"", "", {""}};           // ensures roles[0] exists
+    Domain::Session::UserCredentials credentials  = {"", "",{""}};           // ensures roles[0] exists
     auto &                           selectedRole = credentials.roles[0];     // convenience alias
 
     std::unique_ptr<Domain::Session::SessionHandler> sessionControl;
@@ -72,7 +74,7 @@ namespace UI
       } while( menuSelection >= roleLegalValues.size() );
 
       selectedRole = roleLegalValues[menuSelection];
-
+      // selectedRole = credentials.roles[0];
 
       // 3) Validate user is authorized for this role, and if so create session
       sessionControl = Domain::Session::SessionHandler::createSession( credentials );
@@ -128,11 +130,16 @@ namespace UI
         if( results.has_value() ) _logger << "Received reply: \"" + std::any_cast<const std::string &>( results ) + '"';
       }
 
-      else if( selectedCommand == "Another command" ) /* ... */ {}
+      else if( selectedCommand == "Manage Resume" ) /* ... */ 
+      {
+        std::cout << "Upload Resume"; 
+      }
 
       else sessionControl->executeCommand( selectedCommand, {} );
     } while( true );
 
     _logger << "Ending session and terminating";
   }
+
+  
 }
