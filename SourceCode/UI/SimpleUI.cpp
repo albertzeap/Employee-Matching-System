@@ -65,22 +65,37 @@ namespace UI
       std::cout << "  pass phrase: ";
       std::getline( std::cin, credentials.passPhrase );
 
-      unsigned menuSelection;
-      do
-      {
-        for( unsigned i = 0; i != roleLegalValues.size(); ++i )   std::cout << std::setw( 2 ) << i << " - " << roleLegalValues[i] << '\n';
-        std::cout << "  role (0-" << roleLegalValues.size()-1 << "): ";
-        std::cin  >> menuSelection;
-      } while( menuSelection >= roleLegalValues.size() );
+      // unsigned menuSelection;
+      // do
+      // {
+      //   for( unsigned i = 0; i != roleLegalValues.size(); ++i )   std::cout << std::setw( 2 ) << i << " - " << roleLegalValues[i] << '\n';
+      //   std::cout << "  role (0-" << roleLegalValues.size()-1 << "): ";
+      //   std::cin  >> menuSelection;
+      // } while( menuSelection >= roleLegalValues.size() );
 
-      selectedRole = roleLegalValues[menuSelection];
+      Domain::Session::UserCredentials account = _persistentData.findCredentialsByName(credentials.userName);
+      for (unsigned i = 0; i != roleLegalValues.size(); ++i)
+      {
+        
+        if (account.roles[0] == roleLegalValues[i])
+        {
+          selectedRole = account.roles[0];
+        }
+      }
+
+      // selectedRole = roleLegalValues[menuSelection];
       // selectedRole = credentials.roles[0];
 
       // 3) Validate user is authorized for this role, and if so create session
       sessionControl = Domain::Session::SessionHandler::createSession( credentials );
       if( sessionControl != nullptr )
       {
+        srand(time_t(0));
+        int sessionID = rand()%10000;
         _logger << "Login Successful for \"" + credentials.userName + "\" as role \"" + selectedRole + "\"";
+
+        // Basic Session ID Implementation, needs to be implemented in session class and logger
+        std::cout << "Session ID: " << sessionID << std::endl;
         break;
       }
 
