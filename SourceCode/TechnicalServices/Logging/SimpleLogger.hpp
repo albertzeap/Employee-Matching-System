@@ -19,6 +19,7 @@ namespace TechnicalServices::Logging
 
       // Operations
       SimpleLogger & operator<< ( const std::string & message ) override;
+      SimpleLogger & operator<< (int id) override;
 
       // Destructor
       ~SimpleLogger() noexcept override;
@@ -77,6 +78,30 @@ namespace TechnicalServices::Logging
     #endif
 
     _loggingStream << message << '\n';
+
+    return *this;
+  }
+
+   inline SimpleLogger & SimpleLogger::operator<< ( int id )
+  {
+    auto now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+    
+    // Updated 2020-Sep-03
+    //
+    // C++20 provides a much needed refresh to the Chrono library, but until then I have to used some C functions to get the time
+    // formatted how I like.  And even then, MS Visual has (correctly imo) deprecated some of the C functions because they are
+    // inherently unsafe - in this case the std::localtime() function.  So I'm going to limp along here until C++20 is released -
+    // but (note to self) revisit this and rewrite when the time comes.
+    #if defined(_MSC_VER)  &&  _MSC_VER >= 1920     // if using Visual Studio 2019 version 16.0 or earlier  (I believe VSC++ started enforcing the deprecation here)
+      std::tm destination;
+      ::localtime_s(&destination, &now);
+      _loggingStream << std::put_time( &destination, "%Y-%m-%d %X" ) << " | ";
+    
+    #else
+      _loggingStream << std::put_time( std::localtime( &now ), "%Y-%m-%d %X" ) << " | ";
+    #endif
+
+    _loggingStream << id << '\n';
 
     return *this;
   }

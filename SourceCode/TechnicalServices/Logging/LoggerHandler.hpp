@@ -22,6 +22,7 @@ namespace TechnicalServices::Logging
 
       // Operations
       virtual LoggerHandler & operator<< ( const std::string & message ) = 0;
+      virtual LoggerHandler & operator<< (int id) = 0;
 
 
       // Destructor

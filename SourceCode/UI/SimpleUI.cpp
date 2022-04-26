@@ -94,10 +94,9 @@ namespace UI
         
         srand(static_cast<unsigned> (time(0)));
         int sessionID = rand()%10000;
-        _logger << "Login Successful for \"" + credentials.userName + "\" as role \"" + selectedRole + "\"";
 
-        // Basic Session ID Implementation, needs to be implemented in session class and logger
-        std::cout << "Session ID: " << sessionID << std::endl;
+        _logger << "Login Successful for \"" + credentials.userName + "\" as role \"" + selectedRole + "\"";
+        _logger << sessionID;
         break;
       }
 
