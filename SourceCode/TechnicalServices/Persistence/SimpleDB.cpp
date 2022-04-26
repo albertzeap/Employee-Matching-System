@@ -88,8 +88,6 @@ namespace TechnicalServices::Persistence
 
   std::vector<std::string> SimpleDB::findRoles()
   {
-    //Borrower      -> Job Seeker,        Librarian  -> Recruiter
-    //Administrator -> Career Specialist, Management -> IT 
     return { "Job Seeker", "Recruiter", "Career Specialist", "IT" };
   }
 

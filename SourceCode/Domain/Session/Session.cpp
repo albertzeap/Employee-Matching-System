@@ -17,27 +17,14 @@ namespace  // anonymous (private) working area
   STUB( manageResume )
 
 
-  std::any checkoutBook( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
-  {
-    // TO-DO  Verify there is such a book and the mark the book as being checked out by user
-    std::string results = "Title \"" + args[0] + "\" checkout by \"" + session._credentials.userName + '"';
-    session._logger << "checkoutBook:  " + results;
-    return {results};
-  }
+  // std::any checkoutBook( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
+  // {
+  //   // TO-DO  Verify there is such a book and the mark the book as being checked out by user
+  //   std::string results = "Title \"" + args[0] + "\" checkout by \"" + session._credentials.userName + '"';
+  //   session._logger << "checkoutBook:  " + results;
+  //   return {results};
+  // }
 
-  std::string manageFile(Domain::Session::SessionBase & session, const std::vector<std::string> & args )
-  {
-    std::string options;
-            std::cout << "What would you like to do? \n"
-                 << "0: Upload Resume \n"
-                 << "1: Delete Resume \n"
-                 << "2: Log out \n"; 
-            std::cin >> options; 
-            if (options == "0") {
-              std::cout << "Resume uploaded";
-            }
-            return 0; 
-  }
 
   
 }    // anonymous (private) working area
