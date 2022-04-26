@@ -7,7 +7,8 @@
 #include <memory>      // unique_ptr, make_unique<>()
 #include <string>      // string, getline()
 #include <vector>
-#include <cstdlib>    // srand(), time()
+#include <stdlib.h>    // srand()
+#include <time.h>      // time()
 
 
 #include "Domain/Library/Books.hpp"    // Include for now - will replace next increment
@@ -90,7 +91,8 @@ namespace UI
       sessionControl = Domain::Session::SessionHandler::createSession( credentials );
       if( sessionControl != nullptr )
       {
-        srand(time_t(0));
+        
+        srand(static_cast<unsigned> (time(0)));
         int sessionID = rand()%10000;
         _logger << "Login Successful for \"" + credentials.userName + "\" as role \"" + selectedRole + "\"";
 
