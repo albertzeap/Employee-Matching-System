@@ -174,7 +174,7 @@ namespace UI
 
         std::cout << "Resumes\n";
         std::cout << "  BobResume.txt\n";
-        std::cout << "  StevenResume.txt\n";
+        std::cout << "  StevenResume.txt\n\n";
 
         std::cout << "Enter resume to begin feedback: "; std::cin >> std::ws; std::getline(std::cin, parameters[0]);
         std::cout << "Enter resume feedback: "         ; std::cin >> std::ws; std::getline(std::cin, parameters[1]);
