@@ -11,13 +11,13 @@ namespace  // anonymous (private) working area
                               { return {}; }  // Stubbed for now
 
   STUB( resolveTicket       )
-  STUB( collectFines        )
+  STUB( maintainPosting        )
   STUB( manageResumeFeedback)
   STUB( openArchives        )
   STUB( manageReferences    )
   STUB( searchJob           )
   STUB( applyForJob         )
-  // STUB( manageResume )
+  STUB( hostMeeting         )
 
 
   // std::any checkoutBook( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
@@ -116,7 +116,7 @@ namespace Domain::Session
   CareerSpecialistSession::CareerSpecialistSession( const UserCredentials & credentials ) : SessionBase( "Career Specialist", credentials )
   {
     _commandDispatch = { {"Manage Resume Feedback", manageResumeFeedback},
-                         {"Host Meeting"          , manageReferences    }, 
+                         {"Host Meeting"          , hostMeeting         }, 
                                                                                            };
   }
 
@@ -138,7 +138,7 @@ namespace Domain::Session
   RecruiterSession::RecruiterSession( const UserCredentials & credentials ) : SessionBase( "Recruiter", credentials )
   {
     _commandDispatch = { 
-                         {"Maintain Job Posting      ", collectFines},
+                         {"Maintain Job Posting      ", maintainPosting},
                          {"Obtain Qualified Applicant", openArchives} };
   }
 

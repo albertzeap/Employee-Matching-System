@@ -96,7 +96,7 @@ namespace UI
         srand(static_cast<unsigned> (time(0)));
         int session_id = rand()%10000;
         sessionID = std::to_string(session_id);
-        
+
         _logger << "Login Successful for \"" + credentials.userName + "\" as role \"" + selectedRole + "\"";
         _logger << "Session ID: " + sessionID;
         
@@ -159,15 +159,25 @@ namespace UI
         std::cout << "action (0-1) ";
         std::cin >> choice;
 
-        if (choice == 0){
-          std::cout << " Enter file name: "; std::cin >> std::ws; std::getline(std::cin, parameters[0]);
-        }
-        else if (choice == 1){
-          std::cout << " Enter file name: "; std::cin >> std::ws; std::getline(std::cin, parameters[0]);
-        }
-        else {
-          std::cout << "INVALID CHOICE\n";
-        }
+        if      (choice == 0) {std::cout << " Enter file name: "; std::cin >> std::ws; std::getline(std::cin, parameters[0]);}
+        else if (choice == 1) {std::cout << " Enter file name: "; std::cin >> std::ws; std::getline(std::cin, parameters[0]);}
+        else                   std::cout << "INVALID CHOICE\n";
+        
+
+        auto results = sessionControl->executeCommand( selectedCommand, parameters );
+        if( results.has_value() ) _logger << "Received reply: \"" + std::any_cast<const std::string &>( results ) + '"';
+      }
+
+      else if (selectedCommand == "Manage Resume Feedback")
+      {
+        std::vector<std::string> parameters ( 2 );
+
+        std::cout << "Resumes\n";
+        std::cout << "  BobResume.txt\n";
+        std::cout << "  StevenResume.txt\n";
+
+        std::cout << "Enter resume to begin feedback: "; std::cin >> std::ws; std::getline(std::cin, parameters[0]);
+        std::cout << "Enter resume feedback: "         ; std::cin >> std::ws; std::getline(std::cin, parameters[1]);
 
         auto results = sessionControl->executeCommand( selectedCommand, parameters );
         if( results.has_value() ) _logger << "Received reply: \"" + std::any_cast<const std::string &>( results ) + '"';
