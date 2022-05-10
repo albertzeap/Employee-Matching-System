@@ -46,6 +46,7 @@ namespace UI
   // Operations
   void SimpleUI::launch()
   {
+    std::string sessionID;
     // 1) Fetch Role legal value list
     std::vector<std::string> roleLegalValues = _persistentData.findRoles();
 
@@ -93,10 +94,12 @@ namespace UI
       {
         
         srand(static_cast<unsigned> (time(0)));
-        int sessionID = rand()%10000;
-
+        int session_id = rand()%10000;
+        sessionID = std::to_string(session_id);
+        
         _logger << "Login Successful for \"" + credentials.userName + "\" as role \"" + selectedRole + "\"";
-        _logger << sessionID;
+        _logger << "Session ID: " + sessionID;
+        
         break;
       }
 
@@ -148,13 +151,32 @@ namespace UI
 
       else if( selectedCommand == "Manage Resume" ) /* ... */ 
       {
-        std::cout << "Upload Resume"; 
+        int choice;
+        std::vector<std::string> parameters ( 1 );
+
+        std::cout << "0 - Upload Resume\n";  
+        std::cout << "1 - Delete Resume\n";
+        std::cout << "action (0-1) ";
+        std::cin >> choice;
+
+        if (choice == 0){
+          std::cout << " Enter file name: "; std::cin >> std::ws; std::getline(std::cin, parameters[0]);
+        }
+        else if (choice == 1){
+          std::cout << " Enter file name: "; std::cin >> std::ws; std::getline(std::cin, parameters[0]);
+        }
+        else {
+          std::cout << "INVALID CHOICE\n";
+        }
+
+        auto results = sessionControl->executeCommand( selectedCommand, parameters );
+        if( results.has_value() ) _logger << "Received reply: \"" + std::any_cast<const std::string &>( results ) + '"';
       }
 
       else sessionControl->executeCommand( selectedCommand, {} );
     } while( true );
 
-    _logger << "Ending session and terminating";
+    _logger << "Ending session " + sessionID + " and terminating";
   }
 
   

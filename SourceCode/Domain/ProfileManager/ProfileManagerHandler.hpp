@@ -2,8 +2,10 @@
 
 #include "Domain/ProfileManager/Profile.hpp"
 #include "Domain/ProfileManager/Reference.hpp"
+#include "Domain/ProfileManager/Resume.hpp"
 
 #include <stdio.h>
+#include <vector>
 
 namespace Domain::ProfileManager
 {
@@ -27,20 +29,22 @@ namespace Domain::ProfileManager
 
             // RESUME OPERATIONS
 
+            // User obtains a list of resumes
+            virtual std::vector<Resume> requestResumes();
             // User uploads their resume into the system as a file. Returns true if successful, false if not. Only for jobseeker. 
-            virtual bool uploadResume(FILE filename) = 0;
+            virtual bool uploadResume(std::string filename) = 0;
             // User deletes their resume. Only for jobseeker. 
-            virtual bool deleteResume(FILE filename) = 0;
+            virtual bool deleteResume(std::string filename) = 0;
             
             // RESUME FEEDBACK OPERATIONS
 
             // User is able to submit their resume file to received feedback from a career specialist. 
             // The feedback should be in the form of a text file. Only for jobseeker. 
-            virtual bool getFeedback (FILE filename) = 0; 
+            virtual bool getFeedback (std::string filename) = 0; 
             // User is able to view the feedback they received in the form of a text file. Only for jobseeker. 
-            virtual FILE viewFeedback(FILE filename) = 0; 
+            virtual FILE viewFeedback(std::string filename) = 0; 
             // This function should only be available to the career specialist. It lets them send the text file after receiving the resume to evaluate as a parameter. 
-            virtual FILE sendFeedback(FILE filename) = 0; 
+            virtual FILE sendFeedback(std::string filename) = 0; 
 
             // REFERENCE OPERATIONS
 

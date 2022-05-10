@@ -10,11 +10,14 @@ namespace  // anonymous (private) working area
   #define STUB(functionName)  std::any functionName( Domain::Session::SessionBase & /*session*/, const std::vector<std::string> & /*args*/ ) \
                               { return {}; }  // Stubbed for now
 
-  STUB( resolveTicket)
-  STUB( collectFines )
-  STUB( manageResumeFeedback         )
-  STUB( openArchives )
-  STUB( manageResume )
+  STUB( resolveTicket       )
+  STUB( collectFines        )
+  STUB( manageResumeFeedback)
+  STUB( openArchives        )
+  STUB( manageReferences    )
+  STUB( searchJob           )
+  STUB( applyForJob         )
+  // STUB( manageResume )
 
 
   // std::any checkoutBook( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
@@ -24,6 +27,11 @@ namespace  // anonymous (private) working area
   //   session._logger << "checkoutBook:  " + results;
   //   return {results};
   // }
+  std::any manageResume( Domain::Session::SessionBase & session, const std::vector<std::string> & args ){
+    std::string results = "File \"" + args[0] + "\" managed by \"" + session._credentials.userName + "";
+    session._logger << "manageResume:  " + results;
+    return {results};
+  }
 
 
   
@@ -107,7 +115,8 @@ namespace Domain::Session
   //    events can be requested by a single role.
   CareerSpecialistSession::CareerSpecialistSession( const UserCredentials & credentials ) : SessionBase( "Career Specialist", credentials )
   {
-    _commandDispatch = { {"Manage Resume Feedback",            manageResumeFeedback        }
+    _commandDispatch = { {"Manage Resume Feedback", manageResumeFeedback},
+                         {"Host Meeting"          , manageReferences    }, 
                                                                                            };
   }
 
@@ -116,9 +125,11 @@ namespace Domain::Session
 
   JobSeekerSession::JobSeekerSession( const UserCredentials & credentials ) : SessionBase( "Job Seeker", credentials )
   {
-    _commandDispatch = { 
-                         {"Manage Resume", manageResume},                    
-                                                       };
+    _commandDispatch = { {"Search For Job"   , searchJob       }, 
+                         {"Apply For Job    ", applyForJob     }, 
+                         {"Manage References", manageReferences},             
+                         {"Manage Resume"    , manageResume    },                  
+                                                               };
   }
 
 
@@ -127,8 +138,8 @@ namespace Domain::Session
   RecruiterSession::RecruiterSession( const UserCredentials & credentials ) : SessionBase( "Recruiter", credentials )
   {
     _commandDispatch = { 
-                         {"Collect Fines", collectFines},
-                         {"Open Archives", openArchives} };
+                         {"Maintain Job Posting      ", collectFines},
+                         {"Obtain Qualified Applicant", openArchives} };
   }
 
 

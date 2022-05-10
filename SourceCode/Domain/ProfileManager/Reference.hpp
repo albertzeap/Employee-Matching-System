@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Domain/ProfileManager/ProfileManagerHandler.hpp"
+#include "Domain/ProfileManager/Profile.hpp"
 #include <string>
 
 namespace Domain::ProfileManager
@@ -9,7 +9,7 @@ namespace Domain::ProfileManager
   {
     public:
       // Constructors
-      using ProfileManagerHandler::ProfileManagerHandler;  // inherit constructors
+      
 
       // Operations
       
