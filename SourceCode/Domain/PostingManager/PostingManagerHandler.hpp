@@ -12,11 +12,10 @@ namespace Domain::PostingManager
         public:
             //Operations
             //To Do: Create Job class
-            virtual JobPosting createJobPost(std::string jobTitle, int salary,           std::string jobExperience,
-                                      std::string jobType , std::string deadline, std::string location     ,
-                                      int jobID                                                            ) = 0;
-            virtual bool deleteJobPost(JobPosting * job) = 0;
-            virtual std::vector<JobPosting> filterJob(std::string filter) = 0; 
+            virtual int createJobPost(std::string jobTitle, int salary,           std::string jobExperience,
+                                      std::string jobType , std::string deadline, std::string location ) = 0;
+            virtual bool deleteJobPost(int jobID) = 0;
+            virtual std::vector<int> filterJob(std::string filter) = 0; 
               
 
             //Destructor
