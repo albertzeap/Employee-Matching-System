@@ -4,8 +4,9 @@
 #include "Domain/ProfileManager/Reference.hpp"
 #include "Domain/ProfileManager/Resume.hpp"
 
-#include <stdio.h>
+#include <fstream>
 #include <vector>
+#include <memory>
 
 namespace Domain::ProfileManager
 {
@@ -42,9 +43,9 @@ namespace Domain::ProfileManager
             // The feedback should be in the form of a text file. Only for jobseeker. 
             virtual bool getFeedback (std::string filename) = 0; 
             // User is able to view the feedback they received in the form of a text file. Only for jobseeker. 
-            virtual FILE viewFeedback(std::string filename) = 0; 
+            virtual bool viewFeedback(std::string filename) = 0; 
             // This function should only be available to the career specialist. It lets them send the text file after receiving the resume to evaluate as a parameter. 
-            virtual FILE sendFeedback(std::string filename) = 0; 
+            virtual bool sendFeedback(std::string filename) = 0; 
 
             // REFERENCE OPERATIONS
 
@@ -54,7 +55,8 @@ namespace Domain::ProfileManager
             virtual bool deleteReference(Reference * reference) = 0; 
 
             // Factory pattern function within class 
-	        static ProfileManagerHandler * makeProfileManager(std::string kind);
+	        // static ProfileManagerHandler * makeProfileManager(std::string kind);
+            static std::unique_ptr<ProfileManagerHandler> createProfileHandler();
             
             
             //Destructor
