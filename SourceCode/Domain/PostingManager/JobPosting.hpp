@@ -9,8 +9,7 @@ namespace Domain::PostingManager
     class JobPosting
     {
         public:
-            JobPosting * (std::string jobTitle, int salary, std::string jobExperience,
-                          std::string jobType , std::string deadline, std::string location );
+            JobPosting * (std::string jobexperience);
 
             //Operations
             //To Do: create methods/functions

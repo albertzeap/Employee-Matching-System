@@ -33,6 +33,8 @@ namespace Domain::ProfileManager
 
             // User obtains a list of resumes
             virtual std::vector<std::string> requestResumes() = 0;
+            // User manages resume
+            virtual bool manageResume(int choice) = 0;
             // User uploads their resume into the system as a file. Returns true if successful, false if not. Only for jobseeker. 
             virtual bool uploadResume(std::string filename) = 0;
             // User deletes their resume. Only for jobseeker. 
@@ -46,7 +48,7 @@ namespace Domain::ProfileManager
             // User is able to view the feedback they received in the form of a text file. Only for jobseeker. 
             virtual bool viewFeedback(std::string filename) = 0; 
             // This function should only be available to the career specialist. It lets them send the text file after receiving the resume to evaluate as a parameter. 
-            virtual bool sendFeedback(std::string filename) = 0; 
+            virtual bool sendFeedback(std::string filename, std::string feedback) = 0; 
 
             // REFERENCE OPERATIONS
 

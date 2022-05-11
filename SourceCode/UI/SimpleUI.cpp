@@ -158,6 +158,7 @@ namespace UI
         std::cout << "1 - Delete Resume\n";
         std::cout << "action (0-1) ";
         std::cin >> choice;
+        std::cout << "Command Selected " << choice << std::endl;
 
         if      (choice == 0) {std::cout << " Enter file name: "; std::cin >> std::ws; std::getline(std::cin, parameters[0]);}
         else if (choice == 1) {std::cout << " Enter file name: "; std::cin >> std::ws; std::getline(std::cin, parameters[0]);}
