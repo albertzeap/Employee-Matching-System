@@ -1,9 +1,5 @@
 #pragma once
 
-#include "Domain/ProfileManager/Profile.hpp"
-#include "Domain/ProfileManager/Reference.hpp"
-#include "Domain/ProfileManager/Resume.hpp"
-
 #include <fstream>
 #include <vector>
 #include <memory>
@@ -19,19 +15,19 @@ namespace Domain::ProfileManager
 
             // User applies to a job by adding their profile object. 
             // Profile object should include their first name, last name, job field, resume, and references.
-            virtual bool applyForJob(Profile * profile) = 0; 
+            virtual bool applyForJob(std::string profileID) = 0; 
 
             // PROFILE OPERATIONS
 
             // User is able to create a profile using their full name and their role (i.e. jobseeker, career specialist, recruiter, IT support) 
-            virtual Profile createProfile(std::string name, std::string role)  = 0;
+            virtual std::string createProfile(std::string name, std::string role)  = 0;
             // Lets the user delete the profile by passing in their profile object. 
-            virtual bool    deleteProfile(Profile * profile                 )  = 0;
+            virtual bool    deleteProfile(std::string * profileID               )  = 0;
 
             // RESUME OPERATIONS
 
             // User obtains a list of resumes
-            virtual std::vector<Resume> requestResumes();
+            virtual std::vector<std::string> requestResumes();
             // User uploads their resume into the system as a file. Returns true if successful, false if not. Only for jobseeker. 
             virtual bool uploadResume(std::string filename) = 0;
             // User deletes their resume. Only for jobseeker. 
@@ -50,12 +46,11 @@ namespace Domain::ProfileManager
             // REFERENCE OPERATIONS
 
             // User is able to add a reference to their account by passing in the name, workplace, role, and relation. Should be for jobseeker only. 
-            virtual Reference addReference   (std::string name) = 0; 
+            virtual bool addReference   (std::string name) = 0; 
             // User is able to delete a reference from their profile by passing in a reference object. Should be for jobseeker only. 
-            virtual bool deleteReference(Reference * reference) = 0; 
+            virtual bool deleteReference(std::string * referenceID) = 0; 
 
             // Factory pattern function within class 
-	        // static ProfileManagerHandler * makeProfileManager(std::string kind);
             static std::unique_ptr<ProfileManagerHandler> createProfileHandler();
             
             
@@ -65,7 +60,7 @@ namespace Domain::ProfileManager
         protected:
             //Copy assignment operators, protected to prevent mix derived-type assignments
             ProfileManagerHandler & operator=( const ProfileManagerHandler & rhs ) = default; // copy assignment
-            ProfileManagerHandler & operator=( const ProfileManagerHandler && rhs) = default; // move assignment
+            ProfileManagerHandler & operator=(       ProfileManagerHandler && rhs) = default; // move assignment
 
 
         

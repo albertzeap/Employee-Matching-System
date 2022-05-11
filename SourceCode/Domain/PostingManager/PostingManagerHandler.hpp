@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Domain/PostingManager/JobPosting.hpp"
 
 #include <string>
 #include <vector>
@@ -26,7 +25,7 @@ namespace Domain::PostingManager
         protected:
             //Copy assignment operators, protected to prevent mix derived-type assignments
             PostingManagerHandler & operator=( const PostingManagerHandler & rhs ) = default; // copy assignment
-            PostingManagerHandler & operator=( const PostingManagerHandler && rhs) = default; // move assignment
+            PostingManagerHandler & operator=(       PostingManagerHandler && rhs) = default; // move assignment
 
 
         
