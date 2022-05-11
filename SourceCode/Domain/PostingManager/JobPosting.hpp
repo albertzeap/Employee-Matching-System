@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Domain/PostingManager/PostingManagerHandler.hpp"
-
 #include <string>
 #include <vector>
 
@@ -11,14 +9,24 @@ namespace Domain::PostingManager
     class JobPosting
     {
         public:
+            JobPosting * (std::string jobTitle, int salary, std::string jobExperience,
+                          std::string jobType , std::string deadline, std::string location );
+
             //Operations
             //To Do: create methods/functions
             
         
         protected:
+            std::string jobTitle;
+            std::string jobExperience;
+            std::string jobType;
+            std::string deadline;
+            std::string location;
+            int salary;
+             
             //Copy assignment operators, protected to prevent mix derived-type assignments
             JobPosting & operator=( const JobPosting & rhs ) = default; // copy assignment
-            JobPosting & operator=( const JobPosting && rhs) = default; // move assignment
+            JobPosting & operator=(       JobPosting && rhs) = default; // move assignment
 
             //TODO: create class attributes 
 
@@ -29,7 +37,7 @@ namespace Domain::PostingManager
     /*****************************************************************************
     ** Inline implementations
     ******************************************************************************/
-    inline PostingManagerHandler::~PostingManagerHandler() noexcept = default;
+    inline JobPosting::~JobPosting(){}
 
 
 

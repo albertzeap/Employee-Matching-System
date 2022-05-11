@@ -11,6 +11,11 @@ namespace Domain::ProfileManager
     {
         public:
            
+
+            // Factory pattern function within class 
+            // static std::unique_ptr<ProfileManagerHandler> createProfileHandler();
+            static ProfileManagerHandler * createProfileHandler();
+
             // JOB OPERATIONS
 
             // User applies to a job by adding their profile object. 
@@ -27,7 +32,7 @@ namespace Domain::ProfileManager
             // RESUME OPERATIONS
 
             // User obtains a list of resumes
-            virtual std::vector<std::string> requestResumes();
+            virtual std::vector<std::string> requestResumes() = 0;
             // User uploads their resume into the system as a file. Returns true if successful, false if not. Only for jobseeker. 
             virtual bool uploadResume(std::string filename) = 0;
             // User deletes their resume. Only for jobseeker. 
@@ -51,7 +56,8 @@ namespace Domain::ProfileManager
             virtual bool deleteReference(std::string * referenceID) = 0; 
 
             // Factory pattern function within class 
-            static std::unique_ptr<ProfileManagerHandler> createProfileHandler();
+            // static std::unique_ptr<ProfileManagerHandler> createProfileHandler();
+            // static ProfileManagerHandler * createProfileHandler();
             
             
             //Destructor
@@ -66,10 +72,14 @@ namespace Domain::ProfileManager
         
     };
 
-    /*****************************************************************************
-    ** Inline implementations
-    ******************************************************************************/
-    inline ProfileManagerHandler::~ProfileManagerHandler() noexcept = default;
+
+
+
+
+
+
+
+
 
 
 
@@ -84,3 +94,7 @@ namespace Domain::ProfileManager
 
 
 }
+
+
+
+
