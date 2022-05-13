@@ -53,6 +53,7 @@
     "stdexcept": "cpp",
     "streambuf": "cpp",
     "typeinfo": "cpp"
-  }
+  },
+  "C_Cpp.errorSquiggles": "Enabled"
   /* See User Settings in ~/.config/Code/User/settings.json */
 }

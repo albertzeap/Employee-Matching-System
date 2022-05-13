@@ -8,15 +8,16 @@ namespace Domain::ProfileManager
   class Reference : public Domain::ProfileManager::ProfileManagerHandler
   {
     public:
-      // Constructors
+      // TODO: Constructors
       
 
-      // Operations
+      // TODO: Operations
       
 
      ~Reference() noexcept override;
 
      protected:
+     //TODO: Attributes
       std::string name;
      
 

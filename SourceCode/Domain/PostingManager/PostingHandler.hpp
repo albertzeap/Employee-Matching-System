@@ -10,7 +10,7 @@ namespace Domain::PostingManager
   class PostingHandler : public Domain::PostingManager::PostingManagerHandler
   {
     public:
-
+        PostingHandler();
 
         int              createJobPost (std::string jobTitle, int salary,           std::string jobExperience,
                                         std::string jobType , std::string deadline, std::string location ) override;

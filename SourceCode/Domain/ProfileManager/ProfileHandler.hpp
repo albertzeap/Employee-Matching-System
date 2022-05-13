@@ -44,7 +44,7 @@ namespace Domain::ProfileManager
         // User is able to view the feedback they received in the form of a text file. Only for jobseeker. 
         bool viewFeedback(std::string filename) override; 
         // This function should only be available to the career specialist. It lets them send the text file after receiving the resume to evaluate as a parameter. 
-        bool sendFeedback(std::string filename) override; 
+        bool sendFeedback(std::string filename, std::string feedback) override; 
 
         // REFERENCE OPERATIONS
 
