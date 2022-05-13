@@ -10,8 +10,6 @@
 #include <stdlib.h>    // srand()
 #include <time.h>      // time()
 
-
-#include "Domain/Library/Books.hpp"    // Include for now - will replace next increment
 #include "Domain/Session/SessionHandler.hpp"
 
 #include "TechnicalServices/Logging/LoggerHandler.hpp"
@@ -23,8 +21,8 @@
 namespace UI
 {
   // Default constructor
-  SimpleUI::SimpleUI()
-  : _bookHandler   ( std::make_unique<Domain::Library::Books>()                     ),   // will replace these with factory calls in the next increment
+  SimpleUI::SimpleUI():
+  // : _bookHandler   ( std::make_unique<Domain::Library::Books>()                     ),   // will replace these with factory calls in the next increment
     _loggerPtr     ( TechnicalServices::Logging::LoggerHandler::create()            ),
     _persistentData( TechnicalServices::Persistence::PersistenceHandler::instance() )
   {
